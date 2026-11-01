@@ -2,55 +2,18 @@
 Hero yaroslav = new Hero("Ярослав", 100);
 Hero anastasia = new Hero("Анастасия", 90);
 Hero artem = new Hero("Артем", 120);
+Hero alexander = new Hero("Александр", 150);
 
 
-Console.WriteLine($"До вызова : {yaroslav.Health}, {anastasia.Health} , {artem.Health}");
-
-yaroslav.TakeDamage(25);
-anastasia.TakeDamage(30);
-
-Console.WriteLine($"\nПосле вызова {yaroslav.Health}, {anastasia.Health} , {artem.Health}");
-
-
-yaroslav.TakeDamage(-20);
-Console.WriteLine($"\nПосле неверного урона : {yaroslav.Health}");
-
-artem.TakeDamage(200);
-Console.WriteLine($"После сильного урона, Артем :{artem.Health}");
-
-yaroslav.Heal(10);
-yaroslav.GainExperience(40);
-yaroslav.GainExperience(25);
-
-
-Console.WriteLine($"\nПосле лечения, Ярослав: {yaroslav.Health}");
-Console.WriteLine($"Опыт Ярослав : {yaroslav.Experience}");
-
-
-bool yaroslavAlive = yaroslav.IsAlive();
-Console.WriteLine($"\nЯрослав жив {yaroslavAlive}");
-Console.WriteLine($"Анастасия жива {anastasia.IsAlive()}");
-Console.WriteLine($"Артем жив {artem.IsAlive()}");
-
-
-if (yaroslavAlive) {
-    Console.WriteLine("\nЯрослав может продолжать приключение");
-}
-else {
-    Console.WriteLine("Ярослав больше не может сражаться");
-}
-
-
-
-string info = yaroslav.GetInfo();
-Console.WriteLine("\n \n Строка получена. Сейчас выведем ее:");
-// Console.WriteLine(info);
-
+Console.WriteLine(yaroslav.GetInfo());
 Console.WriteLine();
 Console.WriteLine(anastasia.GetInfo());
 Console.WriteLine();
 Console.WriteLine(artem.GetInfo());
+Console.WriteLine();
+Console.WriteLine(alexander.GetInfo());
 
+Console.WriteLine("\n");
 
 
 Console.WriteLine("\n \n \n");
