@@ -29,15 +29,17 @@ Console.WriteLine("\n \n \n");
 Inventory yar_inv = new Inventory("доспех", 1);
 Inventory ana_inv = new Inventory("еда", 5);
 Inventory art_inv = new Inventory("камень", 8);
+Inventory alex_inv = new Inventory("Двуручный меч", 1);
 
 yar_inv.Plus_i(1);
 ana_inv.Plus_i(-2);
 art_inv.Plus_i(3);
-
+alex_inv.Plus_i(0);
 
 Console.WriteLine($"\n\n\n Яр имеет у себя в инвентаре данное кол-во {yar_inv.Name} {yar_inv.Count}");
 Console.WriteLine($"Анастасия имеет у себя в инвентаре данное кол-во {ana_inv.Name} {ana_inv.Count}");
 Console.WriteLine($"Артем имеет у себя в инвентаре данное кол-во {art_inv.Name} {art_inv.Count}");
+Console.WriteLine($"\n\n\n Яр имеет у себя в инвентаре данное кол-во {alex_inv.Name} {alex_inv.Count}");
 
 yar_inv.Drop(1);
 Console.WriteLine($"\n Ярослав выбросил предмет {yar_inv.Name} и у него теперь в инвентаре  {yar_inv.Count} данного предмета");
@@ -46,3 +48,4 @@ Console.WriteLine($"\n Ярослав выбросил предмет {yar_inv.N
 Console.WriteLine($"\n{yaroslav.Name}: {yar_inv.INFO_i()}");
 Console.WriteLine($"{anastasia.Name}: {ana_inv.INFO_i()}");
 Console.WriteLine($"{artem.Name}: {art_inv.INFO_i()}");
+Console.WriteLine($"{alexander.Name}: {alex_inv.INFO_i()}");

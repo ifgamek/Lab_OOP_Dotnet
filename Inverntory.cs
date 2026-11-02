@@ -4,7 +4,7 @@ public class Inventory {
     public int Count { get; private set; }
 
     public string Name {
-        get { return Name; }
+        get { return _name; }
 
         private set {
             if (string.IsNullOrWhiteSpace(value)) {
