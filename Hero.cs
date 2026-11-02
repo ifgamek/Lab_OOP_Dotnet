@@ -1,11 +1,23 @@
 public class Hero {
 
-    public string Name;
+    public string _name = "Безымянный герой";
     public int Health { get; private set; }
     public int MaxHealth { get; private set; }
-    public int level;
-    public int Experience;
+    public int level { get; private set; }
+    public int Experience { get; private set; }
 
+    public string Name {
+        get { return _name; }
+
+        private set {
+            if (string.IsNullOrWhiteSpace(value)) {
+                _name = "Безымянный герой";
+                return;
+            }
+
+            _name = value.Trim();
+        }
+    }
     public Hero(string name, int health) {
         Name = name;
         MaxHealth = health;
@@ -65,6 +77,8 @@ public class Hero {
             return;
         }
 
+        if (amount > 2147483647 - Experience) { return; }
+        
         Experience += amount;
     }
 
@@ -78,7 +92,7 @@ public class Hero {
                 $"Здороваье :{Health}\n" +
                 $"Уровень :{level}\n" +
                 $"Опыт :{Experience}";
-        
+
     }
 }
 

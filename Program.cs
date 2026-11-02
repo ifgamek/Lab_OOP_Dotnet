@@ -4,7 +4,10 @@ Hero anastasia = new Hero("Анастасия", 90);
 Hero artem = new Hero("Артем", 120);
 Hero alexander = new Hero("Александр", 150);
 
+alexander.TakeDamage(10);
+alexander.Heal(10);
 
+Console.WriteLine(">>> Участники готовы <<<");
 Console.WriteLine(yaroslav.GetInfo());
 Console.WriteLine();
 Console.WriteLine(anastasia.GetInfo());
@@ -12,8 +15,10 @@ Console.WriteLine();
 Console.WriteLine(artem.GetInfo());
 Console.WriteLine();
 Console.WriteLine(alexander.GetInfo());
+Console.WriteLine($"Предел здоровья Александра: {alexander.MaxHealth}");
 
 Console.WriteLine("\n");
+
 
 
 Console.WriteLine("\n \n \n");
@@ -35,7 +40,7 @@ Console.WriteLine($"Анастасия имеет у себя в инвента�
 Console.WriteLine($"Артем имеет у себя в инвентаре данное кол-во {art_inv.Name} {art_inv.Count}");
 
 yar_inv.Drop(1);
-Console.WriteLine($"\n Ярослав выбросил предмет {yar_inv.Name} и у него теперь в инвентаре  {yar_inv.Count } данного предмета");
+Console.WriteLine($"\n Ярослав выбросил предмет {yar_inv.Name} и у него теперь в инвентаре  {yar_inv.Count} данного предмета");
 
 
 Console.WriteLine($"\n{yaroslav.Name}: {yar_inv.INFO_i()}");
