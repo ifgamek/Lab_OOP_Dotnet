@@ -13,39 +13,25 @@ alexander.Heal(10);
 
 Guild guild = new Guild("Гильдия героев");
 
-guild.Heroes.Add(yaroslav);
-guild.Heroes.Add(anastasia);
-guild.Heroes.Add(artem);
-guild.Heroes.Add(alexander);
-guild.Heroes.Add(sergey);
+guild.AddHero(yaroslav);
+guild.AddHero(anastasia);
+guild.AddHero(artem);
+guild.AddHero(alexander);
+guild.AddHero(sergey);
+List<Hero> members = guild.GetMember();
 
-if (guild.Heroes.Count > 0) {
-    Hero strogngest = guild.Heroes[0];
-    Console.WriteLine($"Первый: {strogngest}");
-    Console.WriteLine($"Последний {guild.Heroes[guild.Heroes.Count - 1].Name}");
 
-    foreach (Hero hero in guild.Heroes) {
-        if (hero.Health >= strogngest.Health) { strogngest = hero; }
-    }
-    Console.WriteLine($"Самый здоровый: {strogngest}");
+Hero? found = guild.FindHeroByName(" аРтЁм ");
+if (found != null) {
+    Console.WriteLine($"Найден по запросу « аРтЁм »: {found.Name}");
+} else {
+    Console.WriteLine("По запросу « аРтЁм » никого нет.");
 }
-Console.WriteLine();
+Console.WriteLine($"Повтор Александра принят: {guild.AddHero(alexander)}");
+Console.WriteLine($"Удалён отсутствующий: {guild.RemoveHero("Борис")}");
+Console.WriteLine($"Участников после проверок: {guild.MemberCount}");
 
-foreach (Hero hero in guild.Heroes) {
-    Console.WriteLine(hero.GetInfo());
-    Console.WriteLine();
-}
 
-Console.WriteLine($">>>{guild.Name}: перекличка <<<");
-Console.WriteLine($"Участники :{guild.Heroes.Count}");
-
-int strongCount = 0;
-
-foreach (Hero hero in guild.Heroes) {
-    if (hero.Health >= 120) { strongCount++; }
-
-}
-Console.WriteLine($"Могут нест тяжелые ящики (Здоровье о  120)     {strongCount}");
 
 Console.WriteLine("\n");
 

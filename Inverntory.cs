@@ -40,7 +40,7 @@ public class Inventory {
 
         if (plus <= 0) { return; }
 
-        if (item.ToLower() == Name.ToLower()) {
+        if (string.Equals(item , Name, StringComparison.OrdinalIgnoreCase)) {
             Count += plus;
         }
         else {
@@ -52,10 +52,15 @@ public class Inventory {
     public void Drop(string item, int drop) {
         if (drop <= 0) { return; }
         if (drop > Count) { Count = 0; }
+        if (string.IsNullOrWhiteSpace(item)) {
+            return;
+        }
 
-        if (item.ToLower() == Name.ToLower()) {
-            if (drop > Count) { Count = 0; }
-            else { Count -= drop; }
+        foreach (string ite in items) {
+            if (string.Equals(item , ite, StringComparison.OrdinalIgnoreCase)) {
+                if (drop > Count) { Count = 0; }
+                else { Count -= drop; }
+            }
         }
 
     }
