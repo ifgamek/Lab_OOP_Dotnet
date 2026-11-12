@@ -20,18 +20,25 @@ guild.AddHero(alexander);
 guild.AddHero(sergey);
 List<Hero> members = guild.GetMember();
 
+Console.WriteLine($">>> {guild.Name}: Участников {guild.MemberCount} <<<");
+Console.WriteLine();
+QuestBoard board = new QuestBoard(guild);
 
-Hero? found = guild.FindHeroByName(" аРтЁм ");
-if (found != null) {
-    Console.WriteLine($"Найден по запросу « аРтЁм »: {found.Name}");
-} else {
-    Console.WriteLine("По запросу « аРтЁм » никого нет.");
+Quest floatQuest = new Quest(101, "Вернуть поплавок", 100, 30);
+Console.WriteLine($"Поручение добавлено: {board.AddQuest(floatQuest)}");
+Console.WriteLine($">>> №{floatQuest.Id}: {floatQuest.Title} <<<");
+
+Console.WriteLine($"Назначение Сергея: {board.TryAssign(101, " сЕрГеЙ ")}");
+Hero? assigned = floatQuest.AssingnedHero;
+if (assigned != null) {
+    Console.WriteLine($"Исполнитель: {assigned.Name}");
 }
-Console.WriteLine($"Повтор Александра принят: {guild.AddHero(alexander)}");
-Console.WriteLine($"Удалён отсутствующий: {guild.RemoveHero("Борис")}");
-Console.WriteLine($"Участников после проверок: {guild.MemberCount}");
+Console.WriteLine($"Опыт после назначения: {sergey.Experience}");
 
-
+Console.WriteLine($"Завершение: {board.TryComplete(101)}");
+Console.WriteLine($"Опыт после завершения: {sergey.Experience}");
+Console.WriteLine($"Повторное завершение: {board.TryComplete(101)}");
+Console.WriteLine($"Опыт после повтора: {sergey.Experience}");
 
 Console.WriteLine("\n");
 
@@ -48,8 +55,8 @@ Inventory art_inv = new Inventory("камень", 8);
 
 
 
-ana_inv.Plus_i("ЕДА", 2);
-ana_inv.Plus_i("плащ", 2);
+ana_inv.Plus_i("еда", 2);
+ana_inv.Plus_i("плащ", 1);
 ana_inv.Plus_i("зелье", 1);
 
 yar_inv.Drop("доспех", 1);

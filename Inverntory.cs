@@ -1,3 +1,4 @@
+
 public class Inventory {
 
     public string _name = "Безымянный Предмет";
@@ -24,12 +25,15 @@ public class Inventory {
     public Inventory(string name, int count) {
         Name = name;
         Count = count;
+
         str = $"{Name} {Count}";
+        items.Add(str);
 
 
         if (Count <= 0) { Count = 0; }
 
         if (Count > 10) { Count = 10; }
+
 
     }
 
@@ -37,29 +41,43 @@ public class Inventory {
 
 
     public void Plus_i(string item, int plus) {
+        if (plus <= 0 || string.IsNullOrWhiteSpace(item)) { return; }
 
-        if (plus <= 0) { return; }
+        if (inv_pr.inv_Count(Count + plus)) {
+            if (item.ToLower() == Name.ToLower()) {
+                Count += plus;
+                str = $"{Name} {Count}";
+                return;
+            }
 
-        if (string.Equals(item , Name, StringComparison.OrdinalIgnoreCase)) {
-            Count += plus;
-        }
-        else {
-            str += $" {item} {plus}";
+            else {
+                Count += plus;
+                str += $" {item} {plus}";
+                items.Add($"{item} {plus}");
+                return;
+            }
+
         }
     }
 
 
     public void Drop(string item, int drop) {
-        if (drop <= 0) { return; }
-        if (drop > Count) { Count = 0; }
-        if (string.IsNullOrWhiteSpace(item)) {
-            return;
-        }
+        if (drop <= 0 || string.IsNullOrWhiteSpace(item)) { return; }
 
-        foreach (string ite in items) {
-            if (string.Equals(item , ite, StringComparison.OrdinalIgnoreCase)) {
-                if (drop > Count) { Count = 0; }
-                else { Count -= drop; }
+        if (inv_pr.inv_Count(Count)) {
+            if (item.ToLower() == Name.ToLower()) {
+                if (drop > Count) { Count = 0; } else { Count -= drop; }
+                items.Clear();
+                str = $"{Name} {Count}";
+                return;
+            }
+
+
+            for (int i = 0; i < items.Count; i++) {
+                if (items[i].Contains(item)) {
+                    items.RemoveAt(i);
+                    break;
+                }
             }
         }
 
@@ -68,10 +86,12 @@ public class Inventory {
 
 
     public string INFO_i() {
-        items.Add(str);
+        if (items.Count == 0) {
+            items.Add(str);
+        }
 
-        if (items.Count == 0) { return "Пусто"; }
+        if (string.IsNullOrWhiteSpace(str)) { return "Пусто"; }
 
-        return $"Инвентарь: {string.Join(" ", items)}";
+        return $"Инвентарь: {str}";
     }
 }

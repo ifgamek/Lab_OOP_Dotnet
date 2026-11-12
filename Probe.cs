@@ -3,19 +3,22 @@ public static class Probe {
         Console.WriteLine(">>> Проба <<<");
 
         Guild probeGuild = new Guild("Учебная гильдия");
-        probeGuild.AddHero(new Hero("Учебный воин", 150));
-        probeGuild.AddHero(new Hero("Учебный Маг", 90));
+        Hero master = new Hero("Учебный мастер", 110);
+        probeGuild.AddHero(master);
 
-        List<Hero> copy = probeGuild.GetMember();
-        copy.Clear();
-        Console.WriteLine($"В копии: {copy.Count}");
-        Console.WriteLine($"В гильдии: {probeGuild.MemberCount}");
+        QuestBoard probeBoard = new QuestBoard(probeGuild);
+        Quest probeQuest = new Quest(1, "Учебное дело", 100  , 10);
+        probeBoard.AddQuest(probeQuest);
 
-        List<Hero> again = probeGuild.GetMember();
-        again[0].TakeDamage(50);
-        Hero? warrior = probeGuild.FindHeroByName("Учебный воин");
-        if (warrior != null) {
-            Console.WriteLine($"Здоровье воина в гильдии {warrior.Health}");
-        }
-    }
+        Console.WriteLine($"Закрыть открытое: {probeBoard.TryComplete(1)}");
+    Console.WriteLine($"Назначить: {probeBoard.TryAssign(1, "Учебный мастер")}");
+    Console.WriteLine($"Назначить ещё раз: {probeBoard.TryAssign(1, "Учебный мастер")}");
+    Console.WriteLine($"Отменить: {probeBoard.TryCancel(1)}");
+    Console.WriteLine($"Закрыть отменённое: {probeBoard.TryComplete(1)}");
+    Console.WriteLine($"Отменить ещё раз: {probeBoard.TryCancel(1)}");
+    Console.WriteLine(probeQuest.GetInfo());
+    Console.WriteLine($"Опыт: {master.Experience}");
+}
+
+
 }
