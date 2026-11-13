@@ -40,7 +40,7 @@ Console.WriteLine($"Опыт после завершения: {sergey.Experience
 Console.WriteLine($"Повторное завершение: {board.TryComplete(101)}");
 Console.WriteLine($"Опыт после повтора: {sergey.Experience}");
 
-
+Console.WriteLine("\n \n");
 Console.WriteLine($"Открыто {board.CountByStatus(QuestStatus.Open)} Назанчено {QuestStatus.Assingned} Отменено {QuestStatus.Cancelled} Завершено{QuestStatus.Completed}");
 
 Console.WriteLine($"{yaroslav.Name} {board.FindActiveQuest(yaroslav.Name)}");
