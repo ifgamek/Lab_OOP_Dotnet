@@ -42,8 +42,13 @@ public class Inventory {
     }
 
 
-    public bool ter_op(inv_status _status) {
+    public bool Ter_op(inv_status _status) {
         return _status == inv_status.Close;
+    }
+
+    public void ChangeStatus(inv_status newStatus) 
+    { 
+        status = newStatus; 
     }
     
     public void Close() { status = inv_status.Close; }
@@ -52,7 +57,7 @@ public class Inventory {
     public void Plus_i(string item, int plus) {
         if (plus <= 0 || string.IsNullOrWhiteSpace(item)) { return; }
 
-        if (ter_op(status)) { return; }
+        if (Ter_op(status)) { return; }
 
         if (inv_pr.inv_Count(Count + plus)) {
             if (item.ToLower() == Name.ToLower()) {
@@ -75,7 +80,7 @@ public class Inventory {
     public void Drop(string item, int drop) {
         if (drop <= 0 || string.IsNullOrWhiteSpace(item)) { return; }
 
-        if (ter_op(status)) { return; }
+        if (Ter_op(status)) { return; }
 
         if (inv_pr.inv_Count(Count)) {
             if (item.ToLower() == Name.ToLower()) {
@@ -95,6 +100,9 @@ public class Inventory {
         }
 
     }
+
+
+    
 
 
 

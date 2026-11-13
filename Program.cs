@@ -41,12 +41,25 @@ Console.WriteLine($"Повторное завершение: {board.TryComplete(
 Console.WriteLine($"Опыт после повтора: {sergey.Experience}");
 
 Console.WriteLine("\n \n");
-Console.WriteLine($"Открыто {board.CountByStatus(QuestStatus.Open)} Назанчено {QuestStatus.Assingned} Отменено {QuestStatus.Cancelled} Завершено{QuestStatus.Completed}");
+Console.WriteLine($"Открыто {board.CountByStatus(QuestStatus.Open)} Назанчено {board.CountByStatus(QuestStatus.Assingned)} Отменено {board.CountByStatus(QuestStatus.Cancelled)} Завершено {board.CountByStatus(QuestStatus.Completed)}");
 
 Console.WriteLine($"{yaroslav.Name} {board.FindActiveQuest(yaroslav.Name)}");
 Console.WriteLine($"{sergey.Name} {board.FindActiveQuest(sergey.Name)}");
+Console.WriteLine("\n");
+
+var container = new List<Inventory>();
+container.Add(new Inventory("Зелье", 5));
 
 
+var inventory = container.FirstOrDefault(i => i.Name == "Зелье");
+
+var op = new Operation(1, "Закрыть");
+
+Console.WriteLine("Успешный старт: " + op.TryStart(inventory));
+Console.WriteLine("Отказ: " + op.TryStart(inventory));
+Console.WriteLine("Успешное завершение: " + op.TryFinish());
+Console.WriteLine("Отказ: " + op.TryFinish());
+Console.WriteLine("Статус объекта после операции: " + inventory.status);
 
 
 Console.WriteLine("\n");
