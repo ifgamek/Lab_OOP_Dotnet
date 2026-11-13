@@ -82,4 +82,32 @@ public class QuestBoard {
         }
         return _guild.RemoveHero(hero.Name);
     }
+
+    public int CountByStatus(QuestStatus status) {
+        int count = 0;
+        foreach (var i in _quests) {
+            if (i.Status == status) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public Quest? FindActiveQuest(string heroName) {
+         var hero = _guild.FindHeroByName(heroName);
+    if (hero == null)
+    {
+        return null;
+    }
+
+    foreach (var quest in _quests)
+    {
+        if (quest.AssingnedHero == hero && quest.Status == QuestStatus.Assingned)
+        {
+            return quest;
+        }
+    }
+
+    return null;
+    }
 }
